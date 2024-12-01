@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "weather-cli"
+version = "1.0.0"
+description = "Weather on the command line."
+authors = ["ch55secake"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+typer = "0.14.0"
+requests = "2.32.3"
+pyyaml = "^6.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
