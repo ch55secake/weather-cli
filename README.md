@@ -40,6 +40,10 @@ Once requirements are satisfied, you can either build the project yourself by ru
  pip3 install $CURRENT_DIRECTORY/release/weathercli-1.x.xx-py3-none-any.whl
 ```
 
-You can also download the 
+You can also download the latest wheel from [here](https://github.com/ch55secake/weather-cli/releases). However, that still requires that 
+you run: 
+```bash
+ pip3 install $CURRENT_DIRECTORY/weathercli-1.x.xx-py3-none-any.whl
+```
 
 
