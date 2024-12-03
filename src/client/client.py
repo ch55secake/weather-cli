@@ -1,10 +1,7 @@
-import json
 from dataclasses import dataclass
 
 import requests as r
 import rich as ri
-
-from config.config import get_config
 
 
 @dataclass
@@ -39,8 +36,8 @@ class WeatherResponse:
     def temp_f(self) -> float:
         return self.current["temp_f"]
 
-    def json(self):
-        return json.loads(self.current["condition"])
+    def json(self) -> list[dict]:
+        return [self.location, self.current]
 
 
 class WeatherClient:
@@ -60,9 +57,8 @@ class WeatherClient:
         :return: WeatherResponse
         """
         try:
-            response = r.get(f"{self.base_url}/current.json?key={api_key}q={location}", headers=self.headers).json()
-            if response.ok:
-                return WeatherResponse(**response)
+            response = r.get(f"{self.base_url}/current.json?key={api_key}&q={location}", headers=self.headers).json()
+            return WeatherResponse(**response)
         except Exception as e:
             ri.print(f"Error when fetching from weather api: {e}")
 

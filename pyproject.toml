@@ -1,15 +1,21 @@
 [tool.poetry]
-name = "weather-cli"
-version = "1.0.0"
+name = "weathercli"
+version = "1.0.16"
 description = "Weather on the command line."
 authors = ["ch55secake"]
 readme = "README.md"
+packages = [
+    { include = "src" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.12"
 typer = "0.14.0"
 requests = "2.32.3"
 pyyaml = "^6.0.2"
+
+[tool.poetry.scripts]
+weathercli="src.weathercli:main"
 
 [build-system]
 requires = ["poetry-core"]

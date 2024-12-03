@@ -9,15 +9,37 @@ You can also provide the flag ``--json`` (disabled by default) to receive the cu
 the data to a different tool (my personal motive for writing this). 
 
 ```bash
-weather-cli get 
+ weather-cli get 
+ ☁ Currently it feels like 1 °C in London.
+  * It is actually 4 °C.
+  * It's partly cloudy.
 ```
 
 Providing a path to the init is optional as mentioned above, although you may want to put the configuration elsewhere. 
 
 ```bash
-weather-cli init <key> <path-optional>
+ weather-cli init <key> <path-optional>
 ```
 
-# Installation 
+# Installation and prerequisites 
 
-Under construction or something idek 
+In order to install the tool, you need to have at least ``python@3.12`` and ``pip3``. 
+
+This tool also then expects that you correctly set the path variables for your ``pip3`` and ``python``
+installations, for example the ones that I currently have set in my zsh profile are: 
+
+```bash
+ export PATH="$HOME/.local/bin:$PATH"
+ export PATH="$HOME/Library/Python/3.12/bin:$PATH"
+```
+
+Once requirements are satisfied, you can either build the project yourself by running: 
+
+```bash
+ poetry build -o release && 
+ pip3 install $CURRENT_DIRECTORY/release/weathercli-1.x.xx-py3-none-any.whl
+```
+
+You can also download the 
+
+

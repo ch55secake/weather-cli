@@ -1,3 +1,4 @@
+import os
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -50,24 +51,24 @@ def write_config_file(filepath: str, api_key: str) -> bool:
     :param filepath: filepath to write configuration file to
     :return: boolean based on result of writing file
     """
-    with open(f"{filepath}/config.yml", "w") as stream:
+    full_path = os.path.join(filepath, "config.yaml")
+    os.makedirs(os.path.dirname(full_path), exist_ok=True)
+    with open(full_path, "w") as stream:
         try:
-            print(f"Writing configuration file: {filepath}/config.yml")
+            print(f"Writing configuration file: {filepath}/config.yaml")
             yaml.dump(Config(api_key=api_key).to_dict(), stream, default_flow_style=False)
             return True
         except yaml.YAMLError as exc:
             rich.print(f"Error occurred whilst writing configuration file: {exc}")
             return False
 
-def initialize_config(api_key: str, filepath: str) -> Config:
+def initialize_config(api_key: str) -> Config:
     """
     Initializes a new configuration file and will allow the user to create a file at a path of their choosing
     :param api_key: api_key for the weather api and will write this to the file
-    :param filepath: filepath to write configuration file to
     :return: Config object containing the key alongside the configuration file
     """
     filepath = f"{Path.home()}/.config/weather-cli"
-    print(f"Writing configuration file: {filepath}/config.yml")
     result: bool = write_config_file(filepath, api_key)
     if result:
         return Config(api_key=api_key)
