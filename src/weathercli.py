@@ -16,10 +16,10 @@ app: t.Typer = t.Typer()
 )
 def init(api_key: Annotated[str, t.Argument()], filepath: Annotated[str, t.Option()] = f".config/weather-cli/config.yml"):
     """
-
-    :param api_key:
-    :param filepath:
-    :return:
+    Command to init configuration file at provided path and with provided key.
+    :param api_key: api key that is to be saved
+    :param filepath: the filepath to initialize configuration file at
+    :return: nothing
     """
     if not does_config_file_exist(filepath=filepath):
         initialize_config(api_key=api_key)
@@ -31,10 +31,10 @@ def init(api_key: Annotated[str, t.Argument()], filepath: Annotated[str, t.Optio
 )
 def get(location: Annotated[str, t.Argument()] = "London", json: Annotated[bool, t.Option()] = False):
     """
-
-    :param location:
-    :param json:
-    :return:
+    Command to get the current weather information for a given area, relies on the weather api key
+    :param location: provide the location to fetch weather information for
+    :param json: whether to output as json
+    :return: a string containing the current weather information
     """
     api_key: str = get_config().api_key
     weather_client: WeatherClient = WeatherClient()
